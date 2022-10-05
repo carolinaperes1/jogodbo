@@ -1,0 +1,103 @@
+
+
+.fundo {
+    position: absolute;
+    top: 5vw;
+    left:5vw;
+    width: 90vw;
+    height: 45vw;
+    text-align: center;
+    background-image: url(fundo.jpeg);
+   background-repeat: no-repeat;
+background-size: cover;
+    border: 10px solid rgb(170, 255, 170);
+    padding: 5px;
+   }   
+
+   background-image: url(fundo.jpg);
+ 
+
+
+
+
+.painel {
+   position: absolute;
+    top: 42vw; 
+    left:10vw; 
+    text-align: center;
+  
+}  
+#div1 {
+   position: absolute;
+   top: 20vw;
+   left: 2vw; 
+   width: 7vw; 
+   height: 7vw; 
+   background-image: url(jerry.png);
+   background-repeat: no-repeat;
+   background-size:cover;
+   text-align: center;
+}
+
+
+/*OBSTACULOS*/
+
+#div3 {
+   position: absolute;
+   top: 0vw;
+   left: 15vw; 
+   width: 6vw; 
+   height: 6vw; 
+   background-image: url(tom.png);
+   background-repeat: no-repeat;
+   background-size:cover;
+   text-align: center;
+}
+
+
+#div5 {
+   position: absolute;
+   top: 0vw;
+   left: 30vw;
+   width: 6vw;
+   height: 6vw;
+   background-image: url(tom.png);
+   background-repeat: no-repeat;
+   background-size: cover;
+   text-align: center;
+}
+#div6 {
+   position: absolute;
+   top: 0vw;
+   left: 70vw;
+   width: 6vw;
+   height: 6vw;
+   background-image: url(tom.png);
+   background-repeat: no-repeat;
+   background-size: cover;
+   text-align: center;
+}
+
+#div8 {
+    position: absolute;
+    top: 0vw;
+    left: 50vw;
+    width: 6vw;
+    height: 6vw;
+    background-image: url(tom.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
+}
+
+#div7 {
+   position: absolute;
+   top: 35vw;
+   left: 75vw;
+   width: 8vw;
+   height: 8vw;
+   background-image: url(queijo.png);
+   background-repeat: no-repeat;
+   background-size: cover;
+   text-align: center;
+}
