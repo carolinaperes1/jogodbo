@@ -1,0 +1,357 @@
+<!DOCTYPE>
+<html lang="pt-br">
+
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tom and Jerry Game</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./sw.js')
+         .then(function () {console.log('service worker registered');})
+         .catch(function () {console.log('service worker failed'); });
+    }
+  </script>
+
+<body>
+
+
+
+    <div class="fundo" id="fundo">
+
+
+        <div id="div1">
+
+        </div>
+        <div id="div3">
+
+        </div>
+        <div id="div5">
+
+        </div>
+
+        <div id="div6">
+
+        </div>
+
+        <div id="div7">
+
+        </div>
+
+        <div id="div8">
+        
+        </div>
+        <div class="painel">
+            <button type="button" id="acima"><img src="img/cima.png" alt="" width="70" height="50"></button>
+            <button type="button" id="esquerda"><img src="img/esquerda.png" alt="" width="70" height="50"></button>
+            <button type="button" id="direita"><img src="img/direita.png" alt="" width="70" height="50"></button>
+            <button type="button" id="baixo"><img src="img/baixo.png" alt="" width="70" height="50"></button><br>
+        </div>
+    </div>
+    <script>
+
+
+        // Mover personagem  - através dos botões
+        function move(Direcao) {
+            if (contador != 0) {
+                para1();
+            }
+            if (Direcao == "direita") {
+                timer = setInterval("direita()", 15);
+                contador++;
+            }
+
+            if (Direcao == "esquerda") {
+                timer = setInterval("esquerda()", 15);
+                contador++;
+            }
+
+            if (Direcao == "acima") {
+                timer = setInterval("acima()", 15);
+                contador++;
+            }
+
+            if (Direcao == "baixo") {
+                timer = setInterval("baixo()", 15);
+                contador++;
+            }
+        }
+
+        //Mover obstáculos - automaticamente
+
+        function moverbaixo3() {
+            let div3Top = parseInt(getComputedStyle(div3).top);
+            let fundoHeight = parseInt(getComputedStyle(fundo).height);
+            let div3Height = parseInt(getComputedStyle(div3).height);
+
+
+
+            div3.style.top = div3Top + 5;
+            if (div3Top >= fundoHeight - div3Height) {
+                clearInterval(tom);
+                fundo.removeChild(div3);
+                d = document.createElement("div");
+                d.setAttribute("id", "div3");
+                fundo.appendChild(d);
+                tom = setInterval("moverbaixo3()", 70);
+
+            }
+        }
+
+
+
+
+        function moverbaixo5() {
+            let div5Top = parseInt(getComputedStyle(div5).top);
+            let fundoHeight = parseInt(getComputedStyle(fundo).height);
+            let div5Height = parseInt(getComputedStyle(div5).height);
+
+            div5.style.top = div5Top + 5;
+            if (div5Top >= fundoHeight - div5Height) {
+                clearInterval(tom2);
+                fundo.removeChild(div5);
+                tom2 = document.createElement("div");
+                tom2.setAttribute("id", "div5");
+                fundo.appendChild(tom2);
+                tom2 = setInterval("moverbaixo5()", 40);
+
+            }
+        }
+
+        function moverbaixo6() {
+            let div6Top = parseInt(getComputedStyle(div6).top);
+            let fundoHeight = parseInt(getComputedStyle(fundo).height);
+            let div6Height = parseInt(getComputedStyle(div6).height);
+
+            div6.style.top = div6Top + 5;
+            
+            if (div6Top >= fundoHeight - div6Height) {
+                clearInterval(tom3);
+                fundo.removeChild(div6);
+                tom3 = document.createElement("div");
+                tom3.setAttribute("id", "div6");
+                fundo.appendChild(tom3);
+                tom3 = setInterval("moverbaixo6()", 50);
+
+            }
+        }
+
+
+         function moverbaixo8() {
+                let div8Top = parseInt(getComputedStyle(div8).top);
+                let fundoHeight = parseInt(getComputedStyle(fundo).height);
+                let div8Height = parseInt(getComputedStyle(div8).height);
+
+                div8.style.top = div8Top + 5;
+                if (div8Top >= fundoHeight - div8Height) {
+                    clearInterval(tom4);
+                    fundo.removeChild(div8);
+                    tom4 = document.createElement("div");
+                    tom4.setAttribute("id", "div8");
+                    fundo.appendChild(tom4);
+                    tom4 = setInterval("moverbaixo8()", 30);
+
+                }
+            }
+
+
+    
+
+        function direita() {
+            let div1Left = parseInt(getComputedStyle(div1).left);
+            let fundoWidth = parseInt(getComputedStyle(fundo).width);
+            let div1Width = parseInt(getComputedStyle(div1).width);
+
+            div1.style.left = div1Left + 5;
+            if (div1Left >= fundoWidth - div1Width) {
+                clearInterval(timer);
+                timer = setInterval("esquerda()", 15);
+            }
+        }
+
+        function esquerda() {
+            let div1Left = parseInt(getComputedStyle(div1).left);
+
+            div1.style.left = div1Left - 5;
+            if (div1Left <= 0) {
+                clearInterval(timer);
+                timer = setInterval("direita()", 15);
+            }
+        }
+
+        function baixo() {
+            let div1Top = parseInt(getComputedStyle(div1).top);
+            let fundoHeight = parseInt(getComputedStyle(fundo).height);
+            let div1Height = parseInt(getComputedStyle(div1).height);
+
+            div1.style.top = div1Top + 5;
+            if (div1Top >= fundoHeight - div1Height) {
+                clearInterval(timer);
+                timer = setInterval("acima()", 15);
+            }
+        }
+        function acima() {
+            let div1Top = parseInt(getComputedStyle(div1).top);
+
+            div1.style.top = div1Top - 5;
+            if (div1Top <= 0) {
+                clearInterval(timer);
+                timer = setInterval("baixo()", 15);
+            }
+        }
+
+        // Parar cursores assim que o Tom encostar no Jerry
+       
+    function para1() {
+        clearInterval(timer)
+
+    }
+        function pontuar() {
+            alert("Parabéns! você pegou o queijo");
+        }
+
+        function alertar()
+        {
+            alert("Você matou o Jerry!")
+        }
+
+        //Parametro do personagem
+        function altura(parametro) {
+            div1.style.height = parseInt(getComputedStyle(div1).height) + parametro;
+        }
+
+        function largura(parametro) {
+            div1.style.width = parseInt(getComputedStyle(div1).width) + parametro;
+        }
+
+
+        function colisao() {
+            let div1Left = parseInt(getComputedStyle(div1).left);
+            let div1Top = parseInt(getComputedStyle(div1).top);
+            let div1Height = parseInt(getComputedStyle(div1).height);
+            let div1Width = parseInt(getComputedStyle(div1).width);
+
+            let div3Left = parseInt(getComputedStyle(div3).left);
+            let div3Top = parseInt(getComputedStyle(div3).top);
+            let div3Height = parseInt(getComputedStyle(div3).height);
+            let div3Width = parseInt(getComputedStyle(div3).width);
+
+            let div5Left = parseInt(getComputedStyle(div5).left);
+            let div5Top = parseInt(getComputedStyle(div5).top);
+            let div5Height = parseInt(getComputedStyle(div5).height);
+            let div5Width = parseInt(getComputedStyle(div5).width);
+
+
+            let div6Left = parseInt(getComputedStyle(div6).left);
+            let div6Top = parseInt(getComputedStyle(div6).top);
+            let div6Height = parseInt(getComputedStyle(div6).height);
+            let div6Width = parseInt(getComputedStyle(div6).width);
+
+            let div7Left = parseInt(getComputedStyle(div7).left);
+            let div7Top = parseInt(getComputedStyle(div7).top);
+            let div7Height = parseInt(getComputedStyle(div7).height);
+            let div7Width = parseInt(getComputedStyle(div7).width);
+
+
+            let div8Left = parseInt(getComputedStyle(div8).left);
+            let div8Top = parseInt(getComputedStyle(div8).top);
+            let div8Height = parseInt(getComputedStyle(div8).height);
+            let div8Width = parseInt(getComputedStyle(div8).width);
+
+            let fundoHeight = parseInt(getComputedStyle(fundo).height);
+            let fundoWidth = parseInt(getComputedStyle(fundo).width);
+
+
+
+            if (((div1Left >= div3Left) && (div1Left <= div3Left + div3Width)) &&
+                ((div1Top >= div3Top) && (div1Top <= div3Top + div3Height))) {
+                para1();
+                alertar();
+            }
+            if (((div3Left >= div1Left) && (div3Left <= div1Left + div1Width)) &&
+                ((div3Top >= div1Top) && (div3Top <= div1Top + div1Height))) {
+                para1();
+                alertar();
+
+            }
+
+            if (((div1Left >= div5Left) && (div1Left <= div5Left + div5Width)) &&
+                ((div1Top >= div5Top) && (div1Top <= div5Top + div5Height))) {
+                para1();
+                alertar();
+
+            }
+            if (((div5Left >= div1Left) && (div5Left <= div1Left + div1Width)) &&
+                ((div5Top >= div1Top) && (div5sTop <= div1Top + div1Height))) {
+                para1();
+                alertar();
+
+            }
+
+            if (((div1Left >= div6Left) && (div1Left <= div6Left + div6Width)) &&
+                ((div1Top >= div6Top) && (div1Top <= div6Top + div6Height))) {
+                para1();
+                alertar();
+            }
+            if (((div6Left >= div1Left) && (div6Left <= div1Left + div1Width)) &&
+                ((div6Top >= div1Top) && (div6Top <= div1Top + div1Height))) {
+                para1();
+                alertar();
+
+            }
+            if (((div1Left >= div8Left) && (div1Left <= div8Left + div8Width)) &&
+                ((div1Top >= div8Top) && (div1Top <= div8Top + div8Height))) {
+                para1();
+                alertar();
+
+            }
+            if (((div8Left >= div1Left) && (div8Left <= div1Left + div1Width)) &&
+                ((div8Top >= div1Top) && (div8Top <= div1Top + div1Height))) {
+                para1();
+                alertar();
+
+            }
+        
+            if (((div1Left >= div7Left) && (div1Left <= div7Left + div7Width)) &&
+                ((div1Top >= div7Top) && (div1Top <= div7Top + div7Height))) {
+                pontuar();
+
+            }
+            if (((div7Left >= div1Left) && (div7Left <= div1Left + div1Width)) &&
+                ((div7Top >= div1Top) && (div7Top <= div1Top + div1Height))) {
+                pontuar();
+
+            }
+
+        }
+
+
+
+
+
+
+        //Ao carregar a página estas linhas são executadas. 
+        let contador = 0;
+        let cont = 0;
+        let tom = setInterval("moverbaixo3()", 70);
+        let tom2 = setInterval("moverbaixo5()", 40);
+        let tom3 = setInterval("moverbaixo6()", 50);
+        let tom4 = setInterval("moverbaixo8()", 30);
+        let n = setInterval("colisao()", 15);
+
+        document.querySelector("#acima").addEventListener("click", () => { move('acima') });
+        document.querySelector("#esquerda").addEventListener("click", () => { move('esquerda') });
+        document.querySelector("#direita").addEventListener("click", () => { move('direita') });
+        document.querySelector("#baixo").addEventListener("click", () => { move('baixo') });
+        document.querySelector("#acima").addEventListener("click", () => { move('acima') });
+
+    </script>
+</body>
+
+</html>
