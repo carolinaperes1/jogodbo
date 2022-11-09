@@ -6,6 +6,7 @@ const urlsToCache = [
   './manifest.json'
 ];
 
+
 //-----------Ao instalar-------
 self.addEventListener('install', event =>
   event.waitUntil(cacheResources())
